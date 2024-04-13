@@ -1,0 +1,19 @@
+trigger:
+- master
+
+pool:
+  name: Self-hosted
+
+steps:
+- checkout: self
+  displayName: 'Checkout'
+- task: CmdLine@2
+  inputs:
+    script: go build github.com/cloudflare/cloudflared/cmd/cloudflared
+  displayName: 'Build'
+  env:
+    GOOS: linux
+    GOARCH: mipsle
+- publish: $(System.DefaultWorkingDirectory)/cloudflared
+  artifact: cloudflared
+  displayName: 'Publish'
