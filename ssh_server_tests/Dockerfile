@@ -1,4 +1,4 @@
-FROM python:3-buster
+FROM python:3.13.0b4-slim
 
 RUN wget https://github.com/cloudflare/cloudflared/releases/latest/download/cloudflared-linux-amd64.deb \
   && dpkg -i cloudflared-linux-amd64.deb
